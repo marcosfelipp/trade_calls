@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 import pika
 
+from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
+from telegram_notifications.settings import TELEGRAM_TOKEN
+
 connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 
@@ -10,6 +13,7 @@ channel.queue_declare(queue='trade_notifications')
 
 def callback(ch, method, properties, body):
     print(" [x] Received %r" % body)
+
 
 
 channel.basic_consume(queue='trade_notifications',
