@@ -4,10 +4,8 @@ RUN apt-get update && apt-get install -y python3-dev build-essential
 
 WORKDIR /apiserver
 
-COPY api/requirements.txt ./requirements.txt
+COPY telegram_notifications/ .
+
 RUN pip install --no-cache-dir --ignore-installed six -r requirements.txt
 
-COPY api/api.py .
-COPY app.py .
-
-CMD [ "python", "./app.py" ]
+CMD [ "python", "./api.py" ]

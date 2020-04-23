@@ -1,24 +1,31 @@
-#!/usr/bin/env python
 import pika
 
-from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
-from telegram_notifications.settings import TELEGRAM_TOKEN
+from settings import TELEGRAM_TOKEN
+from telegram import Bot
 
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
-channel = connection.channel()
 
-#  It's a good practice to repeat declaring the queue in both programs:
-channel.queue_declare(queue='trade_notifications')
+def send_message(chat_id, message):
+    bot = Bot(token=TELEGRAM_TOKEN)
+    bot.sendMessage(chat_id=chat_id, text=message)
+
+
+def subscribe_topic(channel, topic):
+    channel.queue_declare(queue=topic)
+    channel.basic_consume(queue=topic,
+                          auto_ack=True,
+                          on_message_callback=callback)
 
 
 def callback(ch, method, properties, body):
-    print(" [x] Received %r" % body)
+    send_message('-1001380218326', str(body))
 
 
+if __name__ == "__main__":
+    connection = pika.BlockingConnection(pika.ConnectionParameters('0.0.0.0'))
+    ch = connection.channel()
 
-channel.basic_consume(queue='trade_notifications',
-                      auto_ack=True,
-                      on_message_callback=callback)
+    subscribe_topic(ch, "trade_notifications")
+    print(' [*] Waiting for messages. To exit press CTRL+C')
+    ch.start_consuming()
 
-print(' [*] Waiting for messages. To exit press CTRL+C')
-channel.start_consuming()
+

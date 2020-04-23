@@ -1,7 +1,39 @@
 version: '3'
 services:
+  database:
+    image: 'mongo'
+    network_mode: "host"
+    container_name: 'my-mongo-container'
+    environment:
+      - MONGO_INITDB_DATABASE=notifications
+      - MONGO_INITDB_ROOT_USERNAME=teste
+      - MONGO_INITDB_ROOT_PASSWORD=teste
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - ./mongo-volume:/data/db
+    ports:
+      - '27017-27019:27017-27019'
+
   rabbitmq:
     image: "rabbitmq:3-management"
+    network_mode: "host"
     ports:
       - "15672:15672"
       - "5672:5672"
+  telegram:
+    build:
+      context: .
+      dockerfile: Dockerfile.telegram
+    restart: on-failure
+    network_mode: "host"
+    depends_on:
+      - rabbitmq
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile.api
+    network_mode: "host"
+    restart: on-failure
+    depends_on:
+      - rabbitmq

@@ -2,7 +2,7 @@ import logging
 import os
 
 from flask_cors import CORS
-from api.api import app
+from api import app
 
 
 # logging

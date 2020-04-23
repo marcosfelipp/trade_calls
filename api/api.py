@@ -17,14 +17,14 @@ channel.queue_declare(queue='trade_notifications')
 #########################
 
 
-@app.route('/api/v1/new_call', methods=['GET'])
-def post_new_call():
+@app.route('/api/v1/new_call', methods=['POST'])
+def post_call():
+    message = str(request.form['message'])
     channel.basic_publish(exchange='',
                           routing_key='trade_notifications',
-                          body='Hello World!')
-    print(" [x] Sent 'Hello World!'")
+                          body=message)
 
-    return jsonify({'data': "aa"})
+    return jsonify({'data': "OK"})
 
 
 @app.route('/api/v1/new_user', methods=['POST'])
