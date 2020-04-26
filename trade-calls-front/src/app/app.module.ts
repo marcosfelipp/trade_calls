@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CallsComponent } from './components/calls/calls.component';
 import { NewCallComponent } from './components/new-call/new-call.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CallsComponent,
-    NewCallComponent
+    NewCallComponent,
+    MenuComponent
   ],
   imports: [
     BrowserModule,
