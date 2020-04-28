@@ -17,7 +17,7 @@ channel.queue_declare(queue='trade_notifications')
 #########################
 
 
-@app.route('/api/v1/new_call', methods=['POST'])
+@app.route('/api/v1/call', methods=['POST'])
 def post_call():
     message = str(request.form['message'])
     channel.basic_publish(exchange='',
@@ -27,6 +27,28 @@ def post_call():
     return jsonify({'data': "OK"})
 
 
+@app.route('/api/v1/call', methods=['GET'])
+def get_calls():
+    calls = [{
+        "ativo": 'PETR4',
+        "tipo": 'venda',
+        "entrada": '50',
+        "stopLoss": '40',
+        "stopGain": '60',
+        "description": 'Vende galera',
+    }, {
+        "ativo": 'OIBR3',
+        "tipo": 'compra',
+        "entrada": '50',
+        "stopLoss": '40',
+        "stopGain": '60',
+        "description": 'Compra galera',
+    }]
+
+    return jsonify(calls)
+
+
 @app.route('/api/v1/new_user', methods=['POST'])
 def post_register_user():
     pass
+

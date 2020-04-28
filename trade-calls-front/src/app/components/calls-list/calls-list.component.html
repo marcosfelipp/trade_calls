@@ -1,0 +1,19 @@
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">Ativo</th>
+    <th scope="col">First</th>
+    <th scope="col">Last</th>
+    <th scope="col">Handle</th>
+  </tr>
+  </thead>
+  <tbody>
+
+  <tr *ngFor="let call of calls ">
+    <th scope="row">{{call.ativo}}</th>
+    <td>{{call.tipo}}</td>
+    <td>{{call.entrada}}</td>
+    <td>{{call.stopGain}}</td>
+  </tr>
+  </tbody>
+</table>
