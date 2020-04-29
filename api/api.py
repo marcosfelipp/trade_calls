@@ -12,12 +12,12 @@ connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 channel.queue_declare(queue='trade_notifications')
 
-
 # logging
 FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
 logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('api')
 logger.setLevel(logging.DEBUG)
+
 
 #########################
 # ROUTERS
@@ -52,12 +52,41 @@ def get_calls():
         "stopLoss": '40',
         "stopGain": '60',
         "description": 'Compra galera',
-    }]
+    },
+        {
+        "ativo": 'VVAR3',
+        "tipo": 'compra',
+        "entrada": '14,50',
+        "stopLoss": '13,20',
+        "stopGain": '16,20',
+        "description": 'Compra galera',
+        }
+    ]
 
     return jsonify(calls)
+
+
+def post_call_performance():
+    pass
+
+
+@app.route('/api/v1/group', methods=['GET'])
+def get_groups():
+    groups = [{
+        "nome": 'Day trade monstro',
+        "url_img": 'url',
+    }, {
+        "nome": 'Call criptos',
+        "url_img": 'url',
+    }]
+
+    return jsonify(groups)
+
+
+def post_group():
+    pass
 
 
 @app.route('/api/v1/new_user', methods=['POST'])
 def post_register_user():
     pass
-

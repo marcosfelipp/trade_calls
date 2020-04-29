@@ -1,19 +1,25 @@
-<table class="table ">
-  <thead class="thead-dark">
-  <tr>
-    <th scope="col" class="th-sm">Ativo</th>
-    <th scope="col">First</th>
-    <th scope="col">Last</th>
-    <th scope="col">Handle</th>
-  </tr>
-  </thead>
-  <tbody>
+<div class="list-calls">
+  <table class="table ">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col" class="th-sm">Ativo</th>
+      <th scope="col">Tipo</th>
+      <th scope="col">Entrada</th>
+      <th scope="col">Stop Gain</th>
+      <th scope="col">Stop Loss</th>
+    </tr>
+    </thead>
+    <tbody>
 
-  <tr *ngFor="let call of calls ">
-    <th scope="row">{{call.ativo}}</th>
-    <td>{{call.tipo}}</td>
-    <td>{{call.entrada}}</td>
-    <td>{{call.stopGain}}</td>
-  </tr>
-  </tbody>
-</table>
+    <tr *ngFor="let call of calls ">
+      <th scope="row"><img src="../../../assets/img/{{call.ativo}}.png" height=”40” width="40" alt="..."> {{call.ativo}}
+      </th>
+      <td>{{call.tipo}}</td>
+      <td>{{call.entrada}}</td>
+      <td>{{call.stopGain}}</td>
+      <td>{{call.stopLoss}}</td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+

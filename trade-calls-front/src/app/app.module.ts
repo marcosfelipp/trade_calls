@@ -9,6 +9,7 @@ import { NewCallComponent } from './components/new-call/new-call.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CallsListComponent } from './components/calls-list/calls-list.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GroupsCardComponent } from './components/groups-card/groups-card.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     CallsComponent,
     NewCallComponent,
     MenuComponent,
-    CallsListComponent
+    CallsListComponent,
+    GroupsCardComponent
   ],
   imports: [
     BrowserModule,
