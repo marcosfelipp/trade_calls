@@ -12,6 +12,13 @@ connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
 channel = connection.channel()
 channel.queue_declare(queue='trade_notifications')
 
+
+# logging
+FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+logging.basicConfig(format=FORMAT)
+logger = logging.getLogger('api')
+logger.setLevel(logging.DEBUG)
+
 #########################
 # ROUTERS
 #########################
@@ -19,7 +26,9 @@ channel.queue_declare(queue='trade_notifications')
 
 @app.route('/api/v1/call', methods=['POST'])
 def post_call():
-    message = str(request.form['message'])
+    message = str(request.get_json())
+
+    logger.debug("Data received {}: ".format(message))
     channel.basic_publish(exchange='',
                           routing_key='trade_notifications',
                           body=message)

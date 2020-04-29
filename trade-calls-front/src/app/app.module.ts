@@ -8,6 +8,7 @@ import { CallsComponent } from './components/calls/calls.component';
 import { NewCallComponent } from './components/new-call/new-call.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { CallsListComponent } from './components/calls-list/calls-list.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { CallsListComponent } from './components/calls-list/calls-list.component
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

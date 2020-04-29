@@ -15,15 +15,15 @@
         </button>
       </div>
       <div class="modal-body">
-        <form>
+        <form id="formCall" [formGroup]="formCall" (ngSubmit)="onSubmit()">
           <div class="form-group">
             <label for="ativo">Ativo</label>
-            <input type="text" class="form-control" id="ativo">
+            <input type="text" class="form-control" name="ativo" id="ativo" formControlName="ativo">
           </div>
 
           <div class="form-group">
-            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Tipo</label>
-            <select class="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+            <label class="my-1 mr-2" for="tipo">Tipo</label>
+            <select class="custom-select my-1 mr-sm-2" name="tipo" id="tipo" formControlName="tipo">
               <option selected>Selecione</option>
               <option value="1">Compra</option>
               <option value="2">Venda</option>
@@ -32,29 +32,29 @@
 
           <div class="form-group">
             <label for="entrada">Preço entrada</label>
-            <input type="text" class="form-control" id="entrada">
+            <input type="text" class="form-control" name="entrada" id="entrada" formControlName="entrada">
           </div>
 
           <div class="form-group">
-            <label for="stop-gain">Stop Gain</label>
-            <input type="text" class="form-control" id="stop-gain">
+            <label for="stopGain">Stop Gain</label>
+            <input type="text" class="form-control" name="stopGain" id="stopGain" formControlName="stopGain">
           </div>
 
           <div class="form-group">
-            <label for="stop-loss">Stop Loss</label>
-            <input type="text" class="form-control" id="stop-loss">
+            <label for="stopLoss">Stop Loss</label>
+            <input type="text" class="form-control" name="stopLoss" id="stopLoss" formControlName="stopLoss">
           </div>
 
           <div class="form-group">
-            <label for="descricao">Descrição</label>
-            <textarea class="form-control" id="descricao" rows="3"></textarea>
+            <label for="description">Descrição</label>
+            <textarea class="form-control" name="description" id="description"  formControlName="description" rows="3"></textarea>
           </div>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" >Enviar</button>
+        <button type="submit" class="btn btn-primary" form="formCall" >Enviar</button>
         <button type="button" class="btn btn-info">Salvar</button>
-        <button type="button" class="btn btn-warning" data-dismiss="modal">Cancelar</button>
+        <button type="button" #closebutton class="btn btn-warning" data-dismiss="modal">Cancelar</button>
       </div>
     </div>
   </div>

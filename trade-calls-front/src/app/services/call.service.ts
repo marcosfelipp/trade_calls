@@ -16,6 +16,7 @@ export class CallService {
   }
 
   postCalls(call: Call): Observable<any>{
-    return this.http.post(this.callsUrl, call);
+    console.log(call);
+    return this.http.post<any>(this.callsUrl, call);
   }
 }
