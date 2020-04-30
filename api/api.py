@@ -23,6 +23,10 @@ logger.setLevel(logging.DEBUG)
 # ROUTERS
 #########################
 
+@app.route('/api/v1/new_user', methods=['POST'])
+def post_register_user():
+    pass
+
 
 @app.route('/api/v1/call', methods=['POST'])
 def post_call():
@@ -83,10 +87,11 @@ def get_groups():
     return jsonify(groups)
 
 
+@app.route('/api/v1/group', methods=['POST'])
 def post_group():
     pass
 
 
-@app.route('/api/v1/new_user', methods=['POST'])
-def post_register_user():
+@app.route('/api/v1/group/user', methods=['POST'])
+def add_user_group():
     pass

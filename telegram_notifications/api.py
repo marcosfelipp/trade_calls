@@ -2,11 +2,14 @@ import pika
 
 from settings import TELEGRAM_TOKEN
 from telegram import Bot
+from image_generator import *
 
 
 def send_message(chat_id, message):
+    generate_image('OIBR3', 'venda', '0,60', '0,55', '0,50')
     bot = Bot(token=TELEGRAM_TOKEN)
     bot.sendMessage(chat_id=chat_id, text=message)
+    bot.sendPhoto(chat_id=chat_id, photo=open('out.png', 'rb'))
 
 
 def subscribe_topic(channel, topic):
