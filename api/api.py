@@ -78,10 +78,16 @@ def post_call_performance():
 def get_groups():
     groups = [{
         "nome": 'Day trade monstro',
-        "url_img": 'url',
+        "url_img": 'https://blog.clear.com.br/wp-content/uploads/2019/07/Simulador-day-trade.jpg',
+        "description": "Chamadas diárias de ações, dólar e índice"
     }, {
         "nome": 'Call criptos',
-        "url_img": 'url',
+        "url_img": 'https://blog.clear.com.br/wp-content/uploads/2019/07/Simulador-day-trade.jpg',
+        "description": "Chamadas diárias de criptos"
+    }, {
+        "nome": 'Swinguera',
+        "url_img": 'https://blog.clear.com.br/wp-content/uploads/2019/07/Simulador-day-trade.jpg',
+        "description": "Melhores ações para swing trade!"
     }]
 
     return jsonify(groups)
