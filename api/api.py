@@ -1,6 +1,8 @@
 import logging
 from flask import Flask, jsonify, request, send_file
 import pika
+from tradecalldatabase.database import Database
+from tradecalldatabase.schemas import GroupSchema
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
@@ -19,9 +21,13 @@ logger = logging.getLogger('api')
 logger.setLevel(logging.DEBUG)
 
 
+#database
+db = Database('notifications', 'teste', 'teste')
+
 #########################
 # ROUTERS
 #########################
+
 
 @app.route('/api/v1/new_user', methods=['POST'])
 def post_register_user():
@@ -74,21 +80,14 @@ def post_call_performance():
     pass
 
 
-@app.route('/api/v1/group', methods=['GET'])
-def get_groups():
-    groups = [{
-        "nome": 'Day trade monstro',
-        "url_img": 'https://blog.clear.com.br/wp-content/uploads/2019/07/Simulador-day-trade.jpg',
-        "description": "Chamadas diárias de ações, dólar e índice"
-    }, {
-        "nome": 'Call criptos',
-        "url_img": 'https://blog.clear.com.br/wp-content/uploads/2019/07/Simulador-day-trade.jpg',
-        "description": "Chamadas diárias de criptos"
-    }, {
-        "nome": 'Swinguera',
-        "url_img": 'https://blog.clear.com.br/wp-content/uploads/2019/07/Simulador-day-trade.jpg',
-        "description": "Melhores ações para swing trade!"
-    }]
+@app.route('/api/v1/group/<string:user_name>', methods=['GET'])
+def get_groups(user_name):
+    # Get groups of user:
+
+    user_id = db.get_user({"username": user_name})[0]['_id']
+    groups = db.get_groups({'user_administrator': str(user_id)})
+    logger.info(groups)
+    groups = GroupSchema(many=True).dump(groups)
 
     return jsonify(groups)
 

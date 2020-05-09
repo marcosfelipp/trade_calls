@@ -29,11 +29,11 @@ services:
     depends_on:
       - rabbitmq
 
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile.api
-    network_mode: "host"
-    restart: on-failure
-    depends_on:
-      - rabbitmq
+#  api:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.api
+#    network_mode: "host"
+#    restart: on-failure
+#    depends_on:
+#      - rabbitmq

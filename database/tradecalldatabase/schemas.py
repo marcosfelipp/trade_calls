@@ -1,9 +1,9 @@
 from marshmallow import Schema, fields, post_load, validate
-from model import *
+from tradecalldatabase.model import *
 
 
 class CallSchema(Schema):
-    user_administrator = fields.Str(required=True)
+    group_id = fields.Str(required=True)
     stock = fields.Str(required=True)
     type_call = fields.Str(required=True)
     start = fields.Str(required=True)
@@ -19,6 +19,7 @@ class CallSchema(Schema):
 
 
 class GroupSchema(Schema):
+    user_administrator = fields.Str(required=True)
     name = fields.Str(required=True)
     calls = fields.List(fields.Dict, allow_none=True, default=[])
 

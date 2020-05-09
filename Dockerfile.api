@@ -5,7 +5,11 @@ RUN apt-get update && apt-get install -y python3-dev build-essential
 WORKDIR /apiserver
 
 COPY api/ .
+COPY database/ ./database
+
+RUN ls ./database
 
 RUN pip install --no-cache-dir --ignore-installed six -r requirements.txt
+RUN pip install -e ./database
 
 CMD [ "python", "./app_api.py" ]

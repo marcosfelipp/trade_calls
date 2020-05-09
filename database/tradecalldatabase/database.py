@@ -20,24 +20,23 @@ class Database:
 
     # ------------- CALS ------------- #
 
-    def save_call(self, group_id, call):
+    def save_call(self, call):
         """
         Save call in group
-        :param group_id: name of group
         :param call: call object
         :return: None
         """
-        groups_collection = self.db["groups"]
-        groups_collection.update({"_id": group_id}, {"$push": {"calls": call.to_dict()}})
+        calls_collection = self.db["calls"]
+        calls_collection.insert_one(call.to_dict())
 
-    def get_calls(self, group_id):
+    def get_calls(self, query=None):
         """
         Get list of calls in some group
-        :param group_id: Name of group to search
+        :param query: Query
         :return: Array with list of calls
         """
-        groups_collection = self.db["groups"]
-        return [i for i in groups_collection.find_one({"_id": group_id})['calls']]
+        calls_collection = self.db["calls"]
+        return [i for i in calls_collection.find(query)]
 
     # ------------- GROUPS ------------- #
 

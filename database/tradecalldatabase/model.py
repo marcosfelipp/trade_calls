@@ -1,5 +1,4 @@
-from jsonschema import ValidationError
-from bson import ObjectId
+import json
 
 
 class Model(object):
@@ -9,9 +8,9 @@ class Model(object):
 
 
 class CallModel(Model):
-    def __init__(self, user_administrator, stock, type_call,
+    def __init__(self, group_id, stock, type_call,
                  start, stop_loss, stop_gain, date, description=None, profit=None):
-        self.user_administrator = user_administrator
+        self.group_id = group_id
         self.stock = stock
         self.type_call = type_call
         self.start = start
@@ -27,13 +26,16 @@ class CallModel(Model):
 
 
 class GroupModel(Model):
-    def __init__(self, name):
+    def __init__(self, name, user_administrator):
         self.name = name
-        self.calls = []
+        self.user_administrator = user_administrator
 
     @staticmethod
     def from_dict(data):
         return GroupModel(**data)
+
+    def to_json(self):
+        return json.dumps(self.to_dict())
 
 
 class UserModel(Model):
