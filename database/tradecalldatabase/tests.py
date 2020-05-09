@@ -14,31 +14,37 @@ if __name__ == "__main__":
     db.save_user(user)
     user_id = db.get_user({"username": "admin"})[0]["_id"]
 
+    print(user_id)
+
     group = GroupSchema().load({"name": 'MorningCall',
-                                "user_administrator": str(user_id)})
+                                "userOwner": str(user_id),
+                                "description": "calls diários para compras na manhã",
+                                "imgUrl": "https://5be8c0f6d904e0044d904cc1.static-01.com/l/images/e8e10145e2e40270acb0fce8da3c5eb8529e3652.jpg"})
     db.save_group(group)
 
     group = GroupSchema().load({"name": 'Empiricus',
-                                "user_administrator": str(user_id)})
+                                "userOwner": str(user_id),
+                                "description": "Receba calls toda semana",
+                                "imgUrl": "https://5be8c0f6d904e0044d904cc1.static-01.com/l/images/e8e10145e2e40270acb0fce8da3c5eb8529e3652.jpg"})
     db.save_group(group)
 
     group_id = db.get_groups({"name": "MorningCall"})[0]['_id']
 
-    call = CallSchema().load({"group_id": str(group_id),
+    call = CallSchema().load({"groupId": str(group_id),
                               "stock": 'OIBR3',
-                              "type_call": 'compra',
+                              "callType": 'compra',
                               "start": '0,61',
-                              "stop_gain": '0,60',
-                              "stop_loss": '0,65',
+                              "stopGain": '0,60',
+                              "stopLoss": '0,65',
                               "date": 'now'})
     db.save_call(call)
 
-    call = CallSchema().load({"group_id": str(group_id),
+    call = CallSchema().load({"groupId": str(group_id),
                               "stock": 'PETR4',
-                              "type_call": 'venda',
+                              "callType": 'venda',
                               "start": '0,61',
-                              "stop_gain": '0,60',
-                              "stop_loss": '0,65',
+                              "stopGain": '0,60',
+                              "stopLoss": '0,65',
                               "date": 'now'})
     db.save_call(call)
 
@@ -48,9 +54,7 @@ if __name__ == "__main__":
 
     # Get groups of user:
 
-    groups = db.get_groups({"user_administrator": str(user_id)})
+    groups = db.get_groups({'user_owner': str(user_id)})
+    groups = GroupSchema(many=True).dump(groups)
     print(groups)
 
-    g = GroupSchema(many=True).dump(groups)
-
-    print(jsonify(g))

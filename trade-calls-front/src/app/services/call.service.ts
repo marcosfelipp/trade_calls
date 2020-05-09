@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class CallService {
-  private callsUrl = 'http://0.0.0.0:5000/api/v1/call';
+  private callsUrl = 'http://0.0.0.0:5000/api/v1/calls/5eb6e12adea8ebb48506763d';
 
   constructor(private http: HttpClient) { }
 

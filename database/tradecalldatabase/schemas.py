@@ -1,14 +1,14 @@
-from marshmallow import Schema, fields, post_load, validate
+from marshmallow import Schema, fields, post_load
 from tradecalldatabase.model import *
 
 
 class CallSchema(Schema):
-    group_id = fields.Str(required=True)
+    group_id = fields.Str(required=True, data_key="groupId")
     stock = fields.Str(required=True)
-    type_call = fields.Str(required=True)
+    call_type = fields.Str(required=True, data_key="callType")
     start = fields.Str(required=True)
-    stop_gain = fields.Str()
-    stop_loss = fields.Str()
+    stop_gain = fields.Str(data_key="stopGain")
+    stop_loss = fields.Str(data_key="stopLoss")
     date = fields.Str(allow_none=False)
     description = fields.Str()
     profit = fields.Str(required=False)
@@ -19,9 +19,11 @@ class CallSchema(Schema):
 
 
 class GroupSchema(Schema):
-    user_administrator = fields.Str(required=True)
+    _id = fields.UUID()
+    user_owner = fields.Str(required=True, data_key="userOwner")
     name = fields.Str(required=True)
-    calls = fields.List(fields.Dict, allow_none=True, default=[])
+    description = fields.Str()
+    img_url = fields.Str(data_key="imgUrl")
 
     @post_load
     def make_model(self, data, **kwargs):

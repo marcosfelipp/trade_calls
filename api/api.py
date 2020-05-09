@@ -1,8 +1,8 @@
 import logging
-from flask import Flask, jsonify, request, send_file
+from flask import Flask, jsonify, request
 import pika
 from tradecalldatabase.database import Database
-from tradecalldatabase.schemas import GroupSchema
+from tradecalldatabase.schemas import GroupSchema, CallSchema
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
@@ -20,8 +20,7 @@ logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('api')
 logger.setLevel(logging.DEBUG)
 
-
-#database
+# Database
 db = Database('notifications', 'teste', 'teste')
 
 #########################
@@ -46,33 +45,15 @@ def post_call():
     return jsonify({'data': "OK"})
 
 
-@app.route('/api/v1/call', methods=['GET'])
-def get_calls():
-    calls = [{
-        "ativo": 'PETR4',
-        "tipo": 'venda',
-        "entrada": '50',
-        "stopLoss": '40',
-        "stopGain": '60',
-        "description": 'Vende galera',
-    }, {
-        "ativo": 'OIBR3',
-        "tipo": 'compra',
-        "entrada": '50',
-        "stopLoss": '40',
-        "stopGain": '60',
-        "description": 'Compra galera',
-    },
-        {
-        "ativo": 'VVAR3',
-        "tipo": 'compra',
-        "entrada": '14,50',
-        "stopLoss": '13,20',
-        "stopGain": '16,20',
-        "description": 'Compra galera',
-        }
-    ]
-
+@app.route('/api/v1/calls/<string:group_id>', methods=['GET'])
+def get_calls(group_id):
+    """
+    Get calls of a group
+    :param group_id: Group identification
+    :return: List of calls
+    """
+    calls = db.get_calls({"group_id": group_id})
+    calls = CallSchema(many=True).dump(calls)
     return jsonify(calls)
 
 
@@ -80,15 +61,15 @@ def post_call_performance():
     pass
 
 
-@app.route('/api/v1/group/<string:user_name>', methods=['GET'])
-def get_groups(user_name):
-    # Get groups of user:
-
-    user_id = db.get_user({"username": user_name})[0]['_id']
-    groups = db.get_groups({'user_administrator': str(user_id)})
-    logger.info(groups)
+@app.route('/api/v1/groups/<string:user_id>', methods=['GET'])
+def get_groups(user_id):
+    """
+    Get all group of an user
+    :param user_id: username
+    :return: List of Groups
+    """
+    groups = db.get_groups({'user_owner': str(user_id)})
     groups = GroupSchema(many=True).dump(groups)
-
     return jsonify(groups)
 
 
