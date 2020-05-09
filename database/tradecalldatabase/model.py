@@ -9,11 +9,11 @@ class Model(object):
 
 
 class CallModel(Model):
-    def __init__(self, id, stock, type,
+    def __init__(self, user_administrator, stock, type_call,
                  start, stop_loss, stop_gain, date, description=None, profit=None):
-        self.id = id
+        self.user_administrator = user_administrator
         self.stock = stock
-        self.type = type
+        self.type_call = type_call
         self.start = start
         self.stop_gain = stop_gain
         self.stop_loss = stop_loss

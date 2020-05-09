@@ -1,21 +1,36 @@
 from database import Database
 from model import *
+from schemas import *
+from bson import ObjectId
 
 if __name__ == "__main__":
     db = Database('notifications', 'teste', 'teste')
     db.drop_collection('groups')
 
-    group = GroupModel('MorningCall')
+    group = GroupSchema().load({"name": 'MorningCall'})
     db.save_group(group)
 
-    call = CallModel('0', 'OIBR3', 'compra', '0,61', '0,60', '0,65', 'now')
-    db.save_call('MorningCall', call)
+    group = GroupSchema().load({"name": 'Empiricus'})
+    db.save_group(group)
 
-    call = CallModel('0', 'OIBR3', 'venda', '0,61', '0,60', '0,65', 'now')
-    db.save_call('MorningCall', call)
+    id = db.get_groups({"name": "MorningCall"})[0]['_id']
+    call = CallSchema().load({"user_administrator": ObjectId().__str__(),
+                              "stock": 'OIBR3',
+                              "type_call": 'compra',
+                              "start": '0,61',
+                              "stop_gain": '0,60',
+                              "stop_loss": '0,65',
+                              "date": 'now'})
+    db.save_call(id, call)
 
-    call = CallModel('0', 'PETR4', 'venda', '14', '13', '12', 'now')
-    db.save_call('MorningCall', call)
+    call = CallSchema().load({"user_administrator": ObjectId().__str__(),
+                              "stock": 'PETR4',
+                              "type_call": 'venda',
+                              "start": '0,61',
+                              "stop_gain": '0,60',
+                              "stop_loss": '0,65',
+                              "date": 'now'})
+    db.save_call(id, call)
 
-    for i in db.get_calls('MorningCall'):
+    for i in db.get_calls(id):
         print(i)
