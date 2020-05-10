@@ -1,5 +1,36 @@
-.overview{
-    background: #ffffff;
-    height: 250px;
-    padding: 30px;
+.overview {
+  background: #ffffff;
+  height: 350px;
+  padding: 30px;
+  position: relative;
+}
+.menu-overview{
+  position: absolute;
+  bottom: 3px;
+}
+
+.overview-content{
+  max-width: 1500px;
+  margin: auto;
+}
+
+.nav-item{
+   border-bottom: 3px solid transparent;
+}
+.nav-item:hover {
+  border-bottom: 3px solid red;
+}
+
+@media (min-width: 768px) {
+  .overview{
+    height: 300px;
+  }
+}
+
+@media (min-width: 992px) {
+
+  .overview-cards {
+    max-width: 1500px;
+    margin: auto;
+  }
 }

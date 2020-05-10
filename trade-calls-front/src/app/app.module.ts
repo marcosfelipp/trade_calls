@@ -12,6 +12,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { GroupsCardComponent } from './components/groups-card/groups-card.component';
 import { GroupComponent } from './components/group/group.component';
 import { OverviewComponent } from './components/overview/overview.component';
+import { HomeComponent } from './components/home/home.component';
+import {routing} from './app.routing';
 
 @NgModule({
   declarations: [
@@ -22,13 +24,15 @@ import { OverviewComponent } from './components/overview/overview.component';
     CallsListComponent,
     GroupsCardComponent,
     GroupComponent,
-    OverviewComponent
+    OverviewComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    routing
   ],
   providers: [],
   bootstrap: [AppComponent]
