@@ -12,10 +12,10 @@
     <tbody>
 
     <tr *ngFor="let call of calls ">
-      <th scope="row"><img src="../../../assets/img/{{call.ativo}}.png" height=”40” width="40" alt="..."> {{call.ativo}}
+      <th scope="row"><img src="../../../assets/img/{{call.stock}}.png" height=”40” width="40" alt="..."> {{call.stock}}
       </th>
-      <td>{{call.tipo}}</td>
-      <td>{{call.entrada}}</td>
+      <td>{{call.callType}}</td>
+      <td>{{call.start}}</td>
       <td>{{call.stopGain}}</td>
       <td>{{call.stopLoss}}</td>
     </tr>

@@ -2,10 +2,12 @@
 
   <div class="tab-content tab-c" id="myTabContent">
     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-      <div class="row row-cols-1 row-cols-md-3" >
+      <div class="row row-cols-1 row-cols-md-3">
         <div class="col mb-4" *ngFor="let group of groups">
           <div class="card">
-            <img src="{{group.imgUrl}}" class="card-img-top" alt="...">
+            <a routerLink="/group/{{group._id}}">
+              <img src="{{group.imgUrl}}" class="card-img-top" alt="...">
+            </a>
             <div class="card-body">
               <h5 class="card-title">{{group.nome}}</h5>
               <p class="card-text">{{group.description}}</p>

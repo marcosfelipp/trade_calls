@@ -5,7 +5,7 @@ import {ModuleWithProviders} from '@angular/core';
 
 const APP_ROUTES: Routes = [
   { path: '' , component: HomeComponent },
-  { path: 'group', component: GroupComponent}
+  { path: 'group/:id', component: GroupComponent}
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

@@ -33,8 +33,13 @@ def post_register_user():
     pass
 
 
-@app.route('/api/v1/call', methods=['POST'])
-def post_call():
+@app.route('/api/v1/calls/<string:group_id>', methods=['POST'])
+def post_call(group_id):
+    """
+    Receive new call
+    :param group_id: Id of group
+    :return: Confirmation
+    """
     message = str(request.get_json())
 
     logger.debug("Data received {}: ".format(message))
@@ -73,11 +78,17 @@ def get_groups(user_id):
     return jsonify(groups)
 
 
-@app.route('/api/v1/group', methods=['POST'])
+@app.route('/api/v1/group/add', methods=['POST'])
 def post_group():
     pass
 
 
-@app.route('/api/v1/group/user', methods=['POST'])
-def add_user_group():
+@app.route('/api/v1/group/<string:group_id>/user/<string:user_id>', methods=['POST'])
+def add_user_group(group_id, user_id):
+    """
+    Add new user in group
+    :param group_id:
+    :param user_id:
+    :return:
+    """
     pass

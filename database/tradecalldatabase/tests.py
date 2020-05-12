@@ -14,8 +14,6 @@ if __name__ == "__main__":
     db.save_user(user)
     user_id = db.get_user({"username": "admin"})[0]["_id"]
 
-    print(user_id)
-
     group = GroupSchema().load({"name": 'MorningCall',
                                 "userOwner": str(user_id),
                                 "description": "calls diários para compras na manhã",
@@ -25,7 +23,7 @@ if __name__ == "__main__":
     group = GroupSchema().load({"name": 'Empiricus',
                                 "userOwner": str(user_id),
                                 "description": "Receba calls toda semana",
-                                "imgUrl": "https://5be8c0f6d904e0044d904cc1.static-01.com/l/images/e8e10145e2e40270acb0fce8da3c5eb8529e3652.jpg"})
+                                "imgUrl": "https://uploads-ssl.webflow.com/5c474935f83b6b7ee2a3fe1d/5d5ea6fae396d1fc71693e8f_o-que-e-como-fazer-trade-de-criptomoedas.jpg"})
     db.save_group(group)
 
     group_id = db.get_groups({"name": "MorningCall"})[0]['_id']
@@ -53,8 +51,9 @@ if __name__ == "__main__":
         print(i)
 
     # Get groups of user:
+    # groups = db.get_groups({'user_owner': str(user_id)})
+    # groups = GroupSchema(many=True).dump(groups)
+    # print(groups)
 
-    groups = db.get_groups({'user_owner': str(user_id)})
-    groups = GroupSchema(many=True).dump(groups)
-    print(groups)
-
+    print("User: {}".format(user_id))
+    print("Grupo: {}".format(group_id))

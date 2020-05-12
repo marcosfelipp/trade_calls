@@ -1,7 +1,7 @@
 export class Call {
-  ativo: string;
-  tipo: string;
-  entrada: string;
+  stock: string;
+  callType: string;
+  start: string;
   stopLoss: string;
   stopGain: string;
   description: string;
