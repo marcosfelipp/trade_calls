@@ -10,10 +10,16 @@
   border-radius: 5px;
 }
 
-.card{
+.card {
   height: 450px;
+  text-align: center;
+  padding: 15px;
 }
 
+.card img {
+  height: 150px;
+  width: 150px;
+}
 
 @media (min-width: 768px) {
 

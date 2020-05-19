@@ -1,5 +1,5 @@
 export class Group {
-  nome: string;
+  name: string;
   imgUrl: string;
   description: string;
   _id: string;

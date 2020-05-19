@@ -1,30 +1,46 @@
 .overview {
-  background: #ffffff;
-  height: 350px;
   padding: 30px;
   position: relative;
+  height: 500px;
 }
-.menu-overview{
+
+.menu-overview {
   position: absolute;
   bottom: 3px;
 }
 
-.overview-content{
+.card {
+  background: #2d6a4f;
+  color: white;
+  margin-top: 10px;
+}
+
+.overview-content {
   max-width: 1500px;
   margin: auto;
 }
 
-.nav-item{
-   border-bottom: 3px solid transparent;
+.nav-item {
+  border-bottom: 3px solid transparent;
 }
+
 .nav-item:hover {
   border-bottom: 3px solid red;
 }
 
-@media (min-width: 768px) {
-  .overview{
-    height: 300px;
+@media (min-width: 575px) {
+  .overview {
+    height: 250px;
   }
+
+  .card {
+    margin-top: 0;
+  }
+}
+
+
+@media (min-width: 768px) {
+
 }
 
 @media (min-width: 992px) {
