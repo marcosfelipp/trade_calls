@@ -4,8 +4,10 @@ RUN apt-get update && apt-get install -y python3-dev build-essential wkhtmltopdf
 
 WORKDIR /apiserver
 
-COPY telegram_notifications/ .
+COPY telegram_notifications/requirements.txt .
 
 RUN pip install --no-cache-dir --ignore-installed six -r requirements.txt
+
+COPY telegram_notifications/ .
 
 CMD [ "python", "./api.py" ]

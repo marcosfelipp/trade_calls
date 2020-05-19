@@ -3,6 +3,7 @@ from flask import Flask, jsonify, request
 import pika
 from tradecalldatabase.database import Database
 from tradecalldatabase.schemas import GroupSchema, CallSchema
+import json
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
@@ -40,12 +41,11 @@ def post_call(group_id):
     :param group_id: Id of group
     :return: Confirmation
     """
-    message = str(request.get_json())
+    message = request.get_json()
 
-    logger.debug("Data received {}: ".format(message))
     channel.basic_publish(exchange='',
                           routing_key='trade_notifications',
-                          body=message)
+                          body=json.dumps(message))
 
     return jsonify({'data': "OK"})
 

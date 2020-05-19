@@ -20,20 +20,20 @@ services:
     ports:
       - "15672:15672"
       - "5672:5672"
-  telegram:
-    build:
-      context: .
-      dockerfile: Dockerfile.telegram
-    restart: on-failure
-    network_mode: "host"
-    depends_on:
-      - rabbitmq
+#  telegram:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.telegram
+#    restart: on-failure
+#    network_mode: "host"
+#    depends_on:
+#      - rabbitmq
 
-  api:
-    build:
-      context: .
-      dockerfile: Dockerfile.api
-    network_mode: "host"
-    restart: on-failure
-    depends_on:
-      - rabbitmq
+#  api:
+#    build:
+#      context: .
+#      dockerfile: Dockerfile.api
+#    network_mode: "host"
+#    restart: on-failure
+#    depends_on:
+#      - rabbitmq

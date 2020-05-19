@@ -1,4 +1,5 @@
 import pika
+import json
 
 from settings import TELEGRAM_TOKEN
 from telegram import Bot
@@ -6,9 +7,21 @@ from image_generator import *
 
 
 def send_message(chat_id, message):
-    generate_image('OIBR3', 'venda', '0,60', '0,55', '0,50')
+    message = json.loads(message.decode())
+    stock = message["stock"]
+    type = "Compra" if message["type"] == 1 else "Venda"
+    start = message["start"]
+    stop_loss = message["stopLoss"]
+    stop_gain = message["stopGain"]
+    description = message["description"]
+
+    msg_to_send = "Nova call\n:Ativo: {}\nTipo: {}\nEntrada: {}\nStop Gain: {}\nStop Loss: {}".format(
+        stock, type, start, stop_gain, stop_loss
+    )
+
+    generate_image(stock, type, start, stop_loss, stop_gain)
     bot = Bot(token=TELEGRAM_TOKEN)
-    bot.sendMessage(chat_id=chat_id, text=message)
+    bot.sendMessage(chat_id=chat_id, text=msg_to_send)
     bot.sendPhoto(chat_id=chat_id, photo=open('out.png', 'rb'))
 
 
@@ -20,7 +33,7 @@ def subscribe_topic(channel, topic):
 
 
 def callback(ch, method, properties, body):
-    send_message('-1001380218326', str(body))
+    send_message('-1001380218326', body)
 
 
 if __name__ == "__main__":

@@ -21,9 +21,9 @@ export class CallsComponent implements OnInit {
 
   createForm(call: Call) {
     this.formCall = new FormGroup({
-      ativo: new FormControl(call.stock),
-      tipo: new FormControl(call.callType),
-      entrada: new FormControl(call.start),
+      stock: new FormControl(call.stock),
+      type: new FormControl(call.callType),
+      start: new FormControl(call.start),
       stopLoss: new FormControl(call.stopLoss),
       stopGain: new FormControl(call.stopGain),
       description: new FormControl(call.description)
