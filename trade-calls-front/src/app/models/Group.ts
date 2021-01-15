@@ -3,4 +3,6 @@ export class Group {
   imgUrl: string;
   description: string;
   _id: string;
+  nCalls: number;
+  nMembers: number;
 }

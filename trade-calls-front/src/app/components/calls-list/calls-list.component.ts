@@ -16,7 +16,7 @@ export class CallsListComponent implements OnInit {
   }
 
   setCalls(){
-    this.callService.getCalls().subscribe(calls => {
+    this.callService.getCalls("5ec3d12a0af0cca40e8c3d51").subscribe(calls => {
       this.calls = calls;
     });
   }

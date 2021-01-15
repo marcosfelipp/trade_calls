@@ -17,13 +17,17 @@ export class GroupComponent implements OnInit {
   ngOnInit(): void {
     this.subscription = this.route.params.subscribe(
       (params: any) => {
-       this.id = params['id'];
+       this.id = params.id;
       }
     );
   }
 
   ngOnDestroy(): void{
     this.subscription.unsubscribe();
+  }
+
+  getGroupInfo(): void{
+
   }
 
 }
