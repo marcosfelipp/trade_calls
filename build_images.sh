@@ -1,8 +1,9 @@
 VERSION=$1
 
 echo "******** Building API ********"
-API=tradecalls/api:v${VERSION}
+API=marcosfelipp/trade-calls-api:v${VERSION}
 docker build -t ${API} -f Dockerfile.api .
+docker push ${API}
 
 echo "******** Building Frontend ********"
 FRONTEND=tradecalls/frontend:v${VERSION}
