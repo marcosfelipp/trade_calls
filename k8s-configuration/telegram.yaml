@@ -17,5 +17,4 @@ spec:
         spec:
             containers:
             - name: telegram
-              image: tradecalls/telegram:v
-              imagePullPolicy: Never
+              image: marcosfelipp/trade-calls-telegram-notifications:v0.1.2

@@ -1,9 +1,11 @@
+import os
 import logging
 from flask import Flask, jsonify, request
 import pika
 from tradecalldatabase.database import Database
 from tradecalldatabase.schemas import GroupSchema, CallSchema
 import json
+import base64
 
 app = Flask(__name__)
 app.config['JWT_SECRET_KEY'] = 'jwt-secret-string'
@@ -11,7 +13,7 @@ app.config['JWT_BLACKLIST_ENABLED'] = True
 app.config['JWT_BLACKLIST_TOKEN_CHECKS'] = ['access', 'refresh']
 
 # RabbitMQ configurations:
-connection = pika.BlockingConnection(pika.ConnectionParameters('localhost'))
+connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq-service'))
 channel = connection.channel()
 channel.queue_declare(queue='trade_notifications')
 
@@ -22,7 +24,9 @@ logger = logging.getLogger('api')
 logger.setLevel(logging.DEBUG)
 
 # Database
-db = Database('notifications', 'teste', 'teste')
+login = 'test'
+password = 'test'
+db = Database('notifications', login, password)
 
 #########################
 # ROUTERS

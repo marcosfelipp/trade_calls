@@ -9,7 +9,7 @@ def _database_authenticate(user, password):
 
 
 class Database:
-    def __init__(self, database, user, password, host='localhost'):
+    def __init__(self, database, user, password, host='mongodb-service'):
         user, password = _database_authenticate(user, password)
         self.mongo_client = MongoClient('mongodb://%s:%s@%s' % (user, password, host))
         self.database = database

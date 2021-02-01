@@ -8,7 +8,7 @@ import {Observable} from 'rxjs';
 })
 export class GroupService {
 
-  private groupUrl = 'http://0.0.0.0:5000/api/v1/groups/5ec3d12a0af0cca40e8c3d50';
+  private groupUrl = 'http://192.168.99.100:30000/api/v1/groups/60180f5f2a2b1a453eb99ef1';
 
   constructor(private http: HttpClient) { }
 

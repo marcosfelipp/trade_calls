@@ -1,10 +1,8 @@
-FROM node:9.2.0 as node
+FROM node:12 as node
 
 WORKDIR /frontend
 
-COPY frontend/package.json /frontend
-
-COPY frontend /frontend
+COPY trade-calls-front /frontend
 
 #Build the app
 

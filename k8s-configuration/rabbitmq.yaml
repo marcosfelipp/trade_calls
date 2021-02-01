@@ -25,10 +25,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-    name: api-service
+    name: rabbitmq-service
 spec:
     selector:
-        app: apiserver
+        app: rabbitmq
     ports:
         - name: port1
           protocol: TCP

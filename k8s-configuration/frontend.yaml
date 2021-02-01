@@ -17,7 +17,7 @@ spec:
         spec:
             containers:
             - name: frontend
-              image: tradecalls/frontend:v
+              image: marcosfelipp/trade-calls-frontend:v0.1.2
               ports:
                 - containerPort: 8080
 ---

@@ -1,10 +1,15 @@
 import pika
 import json
+import logging
 
 from settings import TELEGRAM_TOKEN
 from telegram import Bot
 from image_generator import *
 
+FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+logging.basicConfig(format=FORMAT)
+logger = logging.getLogger('telegram')
+logger.setLevel(logging.DEBUG)
 
 def send_message(chat_id, message):
     message = json.loads(message.decode())
@@ -37,7 +42,7 @@ def callback(ch, method, properties, body):
 
 
 if __name__ == "__main__":
-    connection = pika.BlockingConnection(pika.ConnectionParameters('0.0.0.0'))
+    connection = pika.BlockingConnection(pika.ConnectionParameters('rabbitmq-service'))
     ch = connection.channel()
 
     subscribe_topic(ch, "trade_notifications")

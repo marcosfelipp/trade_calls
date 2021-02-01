@@ -6,9 +6,11 @@ docker build -t ${API} -f Dockerfile.api .
 docker push ${API}
 
 echo "******** Building Frontend ********"
-FRONTEND=tradecalls/frontend:v${VERSION}
+FRONTEND=marcosfelipp/trade-calls-frontend:v${VERSION}
 docker build -t ${FRONTEND} -f Dockerfile.front .
+docker push ${FRONTEND}
 
 echo "******** Building telegram ********"
-TELEGRAM=tradecalls/telegram:v${VERSION}
+TELEGRAM=marcosfelipp/trade-calls-telegram-notifications:v${VERSION}
 docker build -t ${TELEGRAM} -f Dockerfile.telegram .
+docker push ${TELEGRAM}

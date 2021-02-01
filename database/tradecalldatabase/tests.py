@@ -3,7 +3,7 @@ from schemas import *
 from flask import Flask, jsonify
 
 if __name__ == "__main__":
-    db = Database('notifications', 'teste', 'teste')
+    db = Database('notifications', 'test', 'test')
     db.drop_collection('groups')
     db.drop_collection('users')
     db.drop_collection('calls')
