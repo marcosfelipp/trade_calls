@@ -11,6 +11,7 @@ logging.basicConfig(format=FORMAT)
 logger = logging.getLogger('telegram')
 logger.setLevel(logging.DEBUG)
 
+
 def send_message(chat_id, message):
     message = json.loads(message.decode())
     stock = message["stock"]
@@ -27,7 +28,7 @@ def send_message(chat_id, message):
     generate_image(stock, type, start, stop_loss, stop_gain)
     bot = Bot(token=TELEGRAM_TOKEN)
     bot.sendMessage(chat_id=chat_id, text=msg_to_send)
-    bot.sendPhoto(chat_id=chat_id, photo=open('out.png', 'rb'))
+    bot.sendPhoto(chat_id=chat_id, photo=open('assets/out.png', 'rb'))
 
 
 def subscribe_topic(channel, topic):

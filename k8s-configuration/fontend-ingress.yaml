@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: frontend-ingress
+  namespace: trade-calls-ns
+spec:
+  rules:
+  - host: tradecalls.com
+    http:
+      paths:
+        - backend:
+            serviceName: frontend-service
+            servicePort: 80

@@ -1,4 +1,6 @@
 # trade_calls
-Platform to send trade calls
+Platform that enables traders share your trades.
 
-![alt text](./doc/service_arch.png "Logo Title Text 1")
+Architecture:
+
+![alt text](./doc/Trade_calls.drawio.png "Logo Title Text 1")
